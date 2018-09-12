@@ -27,6 +27,27 @@ const notas = [{
 }
 ]
 
+const getDataByAttribute = (attributeName, value, arrayParam) => {
+  return new Promise( (resolve, reject) => {
+      const element = arrayParam.filter((element) => element[attributeName] === value)
+      if(element){
+        resolve(element)
+      }else{
+        reject(new Error(`No se ha encontrado el opositor con campo ${fieldName} igual a ${fieldValue}`))
+      }
+    }
+  )
+}
+
+const resultado = new Object()
+const promiseNombre = getDataByAttribute("id", 1, opositores)
+const promiseNotas = getDataByAttribute("id", 1, notas)
+
+Promise.all([promiseNombre, promiseNotas]).
+then((arrayValues) => {
+  console.log(arrayValues)
+})
+
 // crea promesa para obtener los datos del opositor 1
 
 // crea promesa para obtener las notas del opositor 1
